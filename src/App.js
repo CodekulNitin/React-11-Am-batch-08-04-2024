@@ -1,12 +1,15 @@
 import "./App.css";
-import HomePage from "./components/home/HomePage";
+import HomePage from "./components/homepage/HomePage";
+import UseStateForm from "./components/hooks/UseStateForm";
+import UseStateHook from "./components/hooks/UseStateHook";
 import Navbar from "./components/navbar/Navbar";
 
 function App() {
   return (
     <div className="overflow-hidden">
-      <Navbar />
-      <HomePage /> 
+      {/* <Navbar />
+      <HomePage/> */}
+      <UseStateForm />
     </div>
   );
 }
