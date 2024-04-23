@@ -1,5 +1,5 @@
 import { Button, TextField } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -16,11 +16,16 @@ function UseStateForm() {
   const schema = yup
     .object({
       firstName: yup.string().required(),
+      lastName: yup.string().required(),
+      address: yup.string().required(),
       // age: yup.number().positive().integer().required(),
     })
     .required();
 
   const {
+    reset,
+    setValue,
+    getValues,
     watch,
     register,
     handleSubmit,
@@ -29,15 +34,8 @@ function UseStateForm() {
     resolver: yupResolver(schema),
   });
 
-  let firstNameValue = watch("firstName")
-
-
-  const [firstName, setFirstName] = useState("");  //
-  const [lasttName, setLastName] = useState("");
-  const [address, setAddress] = useState("");
-  const [middleName, setMiddleName] = useState("");
-  const [isRequired, setIsRequired] = useState(false);
   const [tableData, setTableData] = useState([]);
+  const [selectedRow, setSelectedRow] = useState(null);
 
   // const handleAddData = () => {
   //   let tempArr = [...tableData];
@@ -59,66 +57,70 @@ function UseStateForm() {
   //     setIsRequired(true);
   //   }
   // };
-  
-  const onSubmit = (data) =>{
-    console.log("formData",data)
-  }
 
-  console.log("firstNameValue",firstNameValue);
+  // const handleAddData= ()=>{
+  //   let tempArr = [...tableData];
+
+  //   let firstNameValue =getValues("firstName")
+
+  // console.log("firstName",firstNameValue);
+  //   // tempArr.push()
+  //   // setTableData(tempArr)
+  //   // reset()
+
+  // }
+
+  console.log("formData", selectedRow);
+  const onSubmit = (data) => {
+    let tempArr = [...tableData];
+    tempArr.push(data);
+    setTableData(tempArr);
+    reset();
+  };
+
+
+  useEffect(()=>{
+    if(selectedRow !== null){
+      setValue("firstName",selectedRow.firstName)
+    }
+  },[selectedRow])
+
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="my-20 text-center justify-center flex space-x-2">
           <div>
             <TextField
-            error={errors.firstName}
+              error={errors.firstName}
               label="First Name"
               size="small"
               name="firstName"
               {...register("firstName")}
-       
             />
-   
           </div>
           <TextField
-            value={middleName}
             label="Midal Name"
             size="small"
-            onChange={(e) => {
-              setMiddleName(e.target.value);
-            }}
+            name="midalName"
+            {...register("midalName")}
           />
           <div>
             <TextField
-              value={lasttName}
               label="Last Name"
+              error={errors.lastName}
               size="small"
               {...register("lastName")}
-
-              onChange={(e) => {
-                setLastName(e.target.value);
-              }}
+              name="lastName"
             />
-            {isRequired && lasttName === "" ? (
-              <p className="text-red-600">Last Name Is Required</p>
-            ) : (
-              ""
-            )}
           </div>
           <div>
             <TextField
-              value={address}
+              error={errors.address}
               label="Address"
               size="small"
-              onChange={(e) => {
-                setAddress(e.target.value);
-              }}
+              name="address"
+              {...register("address")}
             />
-            {isRequired && address === "" ? (
-              <p className="text-red-600">Address Is Required</p>
-            ) : (
-              ""
-            )}
           </div>
           <Button variant="contained" size="small" type="submit">
             Add
@@ -131,7 +133,7 @@ function UseStateForm() {
             <TableHead>
               <TableRow sx={{ background: "lightgray" }}>
                 <TableCell>First Name</TableCell>
-                <TableCell>Middle Name</TableCell>
+                <TableCell>Midal Name</TableCell>
                 <TableCell>Last Name</TableCell>
                 <TableCell>Address</TableCell>
               </TableRow>
@@ -141,18 +143,21 @@ function UseStateForm() {
                 <TableRow
                   key={row.name}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  onClick={()=>{
+                    setSelectedRow(row)
+                  }}
                 >
                   <TableCell component="th" scope="row">
-                    {row["First Name"]}
+                    {row["firstName"]}
                   </TableCell>
                   <TableCell component="th" scope="row">
-                    {row["Middle Name"]}
+                    {row["midalName"]}
                   </TableCell>
                   <TableCell component="th" scope="row">
-                    {row["Last Name"]}
+                    {row["lastName"]}
                   </TableCell>
                   <TableCell component="th" scope="row">
-                    {row.Address}
+                    {row.address}
                   </TableCell>
                 </TableRow>
               ))}
