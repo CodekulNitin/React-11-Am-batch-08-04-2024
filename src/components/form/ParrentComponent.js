@@ -8,6 +8,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import EditIcon from "@mui/icons-material/Edit";
 
 function ParrentComponent(props) {
   const [openChildComponent, setOpenChildeComponent] = useState(false);
@@ -16,7 +17,7 @@ function ParrentComponent(props) {
 
   return (
     <div className="p-2 text-end">
-             {props?.userName}
+      {props?.userName}
       <Button
         type="button"
         variant="contained"
@@ -24,12 +25,13 @@ function ParrentComponent(props) {
       >
         Add New
       </Button>
- 
+
       {tableData.length > 0 ? (
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
             <TableHead>
               <TableRow sx={{ background: "lightgray" }}>
+                <TableCell>Actions</TableCell>
                 <TableCell>First Name</TableCell>
                 <TableCell>Midal Name</TableCell>
                 <TableCell>Last Name</TableCell>
@@ -45,6 +47,9 @@ function ParrentComponent(props) {
                     setSelectedRow(row);
                   }}
                 >
+                  <TableCell>
+                    <EditIcon />
+                  </TableCell>
                   <TableCell component="th" scope="row">
                     {row["firstName"]}
                   </TableCell>

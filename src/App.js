@@ -7,14 +7,14 @@ import Navbar from "./components/navbar/Navbar";
 
 function App() {
 
- let userName = "Codekul"
- 
+ let user = "Codekul"
+
   return (
     <div className="overflow-hidden">
       {/* <Navbar />
       <HomePage/> */}
       {/* <UseStateForm /> */}
-      <ParrentComponent  userName={userName}/>
+      <ParrentComponent  userName={user}/>
     </div>
   );
 }
