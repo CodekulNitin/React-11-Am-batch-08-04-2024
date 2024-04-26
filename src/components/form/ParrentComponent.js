@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ChildComponent from "./ChildComponent";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -14,14 +14,25 @@ function ParrentComponent(props) {
   const [openChildComponent, setOpenChildeComponent] = useState(false);
   const [tableData, setTableData] = useState([]);
   const [selectedRow, setSelectedRow] = useState(null);
+  console.log("selectedRow", selectedRow);
 
+  useEffect(() => {
+    if (selectedRow !== null) {
+let findKey =  tableData.filter((list)=>list.firstName === selectedRow.firstName)
+
+console.log("12332",findKey);
+    }
+  }, [selectedRow]);
   return (
     <div className="p-2 text-end">
-      {props?.userName}
+      {/* {props?.userName} */}
       <Button
         type="button"
         variant="contained"
-        onClick={() => setOpenChildeComponent(true)}
+        onClick={() => {
+          setOpenChildeComponent(true);
+          setSelectedRow(null);
+        }}
       >
         Add New
       </Button>
@@ -43,12 +54,17 @@ function ParrentComponent(props) {
                 <TableRow
                   key={row.name}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  onClick={() => {
-                    setSelectedRow(row);
-                  }}
                 >
                   <TableCell>
-                    <EditIcon />
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSelectedRow(row);
+                        setOpenChildeComponent(true);
+                      }}
+                    >
+                      <EditIcon />
+                    </button>
                   </TableCell>
                   <TableCell component="th" scope="row">
                     {row["firstName"]}
@@ -76,6 +92,8 @@ function ParrentComponent(props) {
         handleClose={() => setOpenChildeComponent(false)}
         setTableData={setTableData}
         tableData={tableData}
+        selectedRow={selectedRow}
+        setSelectedRow={setSelectedRow}
       />
     </div>
   );
