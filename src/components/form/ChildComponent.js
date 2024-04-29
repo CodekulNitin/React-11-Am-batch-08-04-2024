@@ -40,6 +40,9 @@ export default function ChildComponent(props) {
   } = useForm({
     resolver: yupResolver(schema),
   });
+   
+let qtyValue = watch("qty")
+let priceValue = watch("price")
 
   console.log("props.selectedRow",props.selectedRow);
   const onSubmit = (data) => {
@@ -75,6 +78,14 @@ export default function ChildComponent(props) {
       setValue("address", props.selectedRow?.address);
     }
   }, [props.selectedRow]);
+
+  React.useEffect(()=>{
+    if(qtyValue !== ""&& priceValue !== ""){
+      let totalAmt = Number(qtyValue)*Number(priceValue)
+      setValue("totalAmt",totalAmt)
+    }
+
+  },[qtyValue,priceValue])
   return (
     <div>
       <Modal
@@ -100,35 +111,32 @@ export default function ChildComponent(props) {
             <div className="my-2 text-center justify-center flex space-x-2">
               <div>
                 <TextField
-                  error={errors.firstName}
-                  label="First Name"
+                  label="Item Name"
                   size="small"
                   name="firstName"
-                  {...register("firstName")}
+                  {...register("itemName")}
                 />
               </div>
               <TextField
-                label="Midal Name"
+                label="Qty"
                 size="small"
-                name="midalName"
-                {...register("midalName")}
+                name="qty"
+                {...register("qty")}
               />
               <div>
                 <TextField
-                  label="Last Name"
-                  error={errors.lastName}
+                  label="Price"
                   size="small"
-                  {...register("lastName")}
-                  name="lastName"
+                  {...register("price")}
+                  name="price"
                 />
               </div>
               <div>
                 <TextField
-                  error={errors.address}
-                  label="Address"
+                  label="Total Amt"
                   size="small"
-                  name="address"
-                  {...register("address")}
+                  name="totalAmt"
+                  {...register("totalAmt")}
                 />
               </div>
               <Button variant="contained" size="small" type="submit">

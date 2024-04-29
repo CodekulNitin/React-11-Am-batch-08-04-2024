@@ -1,4 +1,5 @@
 import "./App.css";
+import ItemMaster from "./components/form/ItemMaster";
 import ParrentComponent from "./components/form/ParrentComponent";
 import HomePage from "./components/homepage/HomePage";
 import UseStateForm from "./components/hooks/UseStateForm";
@@ -14,7 +15,8 @@ function App() {
       {/* <Navbar />
       <HomePage/> */}
       {/* <UseStateForm /> */}
-      <ParrentComponent  userName={user}/>
+      {/* <ParrentComponent  userName={user}/> */}
+      <ItemMaster />
     </div>
   );
 }
