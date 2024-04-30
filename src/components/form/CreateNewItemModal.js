@@ -38,6 +38,9 @@ export default function CreateNewItemModal(props) {
     handleSubmit,
     formState: { errors },
   } = useForm({
+    defaultValues:{
+      itemName:"codekul"
+    }
     // resolver: yupResolver(schema),
   });
 
@@ -45,6 +48,8 @@ export default function CreateNewItemModal(props) {
   let priceValue = watch("price");
   let discountPercentValue = watch("disc%");
   let gstPercentageValue = watch("gst%");
+
+  let itemNameRef=React.useRef()
 
   console.log("props.selectedRow", props.selectedRow);
   const onSubmit = (data) => {
@@ -135,6 +140,12 @@ export default function CreateNewItemModal(props) {
                   size="small"
                   name="firstName"
                   {...register("itemName")}
+                  onKeyDown={(e)=>{
+                    if(e.key === "Enter"){
+                      e.preventDefault()
+                      itemNameRef.current.focus()
+                    }
+                  }}
                 />
               </div>
               <TextField
@@ -142,6 +153,7 @@ export default function CreateNewItemModal(props) {
                 size="small"
                 name="qty"
                 {...register("qty")}
+                inputRef={itemNameRef}
               />
 
               <div>
