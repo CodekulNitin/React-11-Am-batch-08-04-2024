@@ -17,6 +17,23 @@ function ItemMaster() {
   const handleOpen = () => setOpenNewItemModal(true);
   const handleClose = () => setOpenNewItemModal(false);
   console.log("tableData", tableData);
+
+  const handleChangeQty = (
+    e,
+    row,
+    index
+  ) => {
+    let temp = [...tableData];
+    let tempObj = temp[index];
+    console.log("tableData",tableData,tempObj,index);
+    tempObj.qty = Number(e.target.value);
+    tempObj.totalAmt = Number(e.target.value)*Number(row.price);
+    temp[index] = tempObj;
+    setTableData(temp);
+  };
+
+
+
   return (
     <div>
       <div className="text-end m-2">
@@ -54,7 +71,7 @@ function ItemMaster() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {tableData.map((row) => (
+                {tableData.map((row,index) => (
                   <TableRow key={row.name}>
                     <TableCell>
                       <button
@@ -75,6 +92,9 @@ function ItemMaster() {
                         defaultValue={row["qty"]}
                         name="qty"
                         className="border rounded w-20 text-center"
+                        onChange={(e)=>{
+                          handleChangeQty(e,row,index)
+                        }}
                       />
                     </TableCell>
                     <TableCell component="th" scope="row">
