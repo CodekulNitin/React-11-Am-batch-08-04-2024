@@ -18,21 +18,22 @@ function ItemMaster() {
   const handleClose = () => setOpenNewItemModal(false);
   console.log("tableData", tableData);
 
-  const handleChangeQty = (
-    e,
-    row,
-    index
-  ) => {
+  const handleChangeQty = (e, row, index) => {
     let temp = [...tableData];
     let tempObj = temp[index];
-    console.log("tableData",tableData,tempObj,index);
+    console.log("tableData", tableData, tempObj, index);
+
+    let discoutedAmt =
+      (Number(row["disc%"]) * Number(e.target.value) * Number(row.price)) / 100;
     tempObj.qty = Number(e.target.value);
-    tempObj.totalAmt = Number(e.target.value)*Number(row.price);
+    tempObj.totalAmt = Number(e.target.value) * Number(row.price);
+    tempObj.netAmt =
+      Number(e.target.value) * Number(row.price) -
+      Number(discoutedAmt) +
+      Number(row.gstAmt);
     temp[index] = tempObj;
     setTableData(temp);
   };
-
-
 
   return (
     <div>
@@ -71,7 +72,7 @@ function ItemMaster() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {tableData.map((row,index) => (
+                {tableData.map((row, index) => (
                   <TableRow key={row.name}>
                     <TableCell>
                       <button
@@ -92,8 +93,8 @@ function ItemMaster() {
                         defaultValue={row["qty"]}
                         name="qty"
                         className="border rounded w-20 text-center"
-                        onChange={(e)=>{
-                          handleChangeQty(e,row,index)
+                        onChange={(e) => {
+                          handleChangeQty(e, row, index);
                         }}
                       />
                     </TableCell>
