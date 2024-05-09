@@ -25,8 +25,6 @@ function UseStateForm() {
   const {
     reset,
     setValue,
-    getValues,
-    watch,
     register,
     handleSubmit,
     formState: { errors },
@@ -83,7 +81,7 @@ function UseStateForm() {
     if(selectedRow !== null){
       setValue("firstName",selectedRow.firstName)
     }
-  },[selectedRow])
+  },[selectedRow,setValue])
 
   return (
     <>

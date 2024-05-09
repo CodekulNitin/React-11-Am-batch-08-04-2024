@@ -1,16 +1,16 @@
+import EditIcon from "@mui/icons-material/Edit";
 import { Button } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import ChildComponent from "./ChildComponent";
+import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import EditIcon from "@mui/icons-material/Edit";
+import React, { useEffect, useState } from "react";
+import ChildComponent from "./ChildComponent";
 
-function ParrentComponent(props) {
+function ParrentComponent() {
   const [openChildComponent, setOpenChildeComponent] = useState(false);
   const [tableData, setTableData] = useState([]);
   const [selectedRow, setSelectedRow] = useState(null);
@@ -18,9 +18,11 @@ function ParrentComponent(props) {
 
   useEffect(() => {
     if (selectedRow !== null) {
-let findKey =  tableData.filter((list)=>list.firstName === selectedRow.firstName)
+      let findKey = tableData.filter(
+        (list) => list.firstName === selectedRow.firstName
+      );
 
-console.log("12332",findKey);
+      console.log("12332", findKey);
     }
   }, [selectedRow]);
   return (

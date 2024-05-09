@@ -1,17 +1,18 @@
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
+let tempObj = {
+  id: 1,
+  userName: "Codekul",
+};
 function HomePage() {
   let navigate = useNavigate();
 
-  let tempObj = {
-    id: 1,
-    userName: "Codekul",
-  };
+
 
   return (
     <div className="text-center py-5">
-      <button
+      {/* <button
         type="button"
         onClick={() => {
           navigate("gallary", { state: tempObj });
@@ -19,7 +20,7 @@ function HomePage() {
         className="bg-blue-900 text-white rounded px-3 py-1"
       >
         Gallary
-      </button>
+      </button> */}
     </div>
   );
 }
