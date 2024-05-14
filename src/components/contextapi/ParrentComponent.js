@@ -8,7 +8,7 @@ export const AdminUser = React.createContext();
 export const SuperAdminUser = React.createContext();
 
 function ParrentComponent() {
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState({ id: 1, name: "codekul" });
 
   return (
     <div className="text-center py-40">

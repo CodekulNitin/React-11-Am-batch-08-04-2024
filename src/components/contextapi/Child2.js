@@ -1,10 +1,10 @@
 // Child2.js
 import React, { useContext } from "react";
-import { UserConsumer } from "./UserContext";
+import { UserConsumer, UserInfoConsumer } from "./UserContext";
 
 function Child2() {
 
-  const userName = useContext(UserConsumer)
+  const userName = useContext(UserInfoConsumer)
   return (
     <div>
       Child2 {userName.name}
