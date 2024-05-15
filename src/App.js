@@ -14,6 +14,7 @@ import Product from "./components/react-router-dom/admin/Product";
 import Details from "./components/react-router-dom/admin/Details";
 import UseMemoHook from "./components/hooks/UseMemoHook";
 import UseCallBackHook from "./components/hooks/usecallback/UseCallBackHook";
+import UseReducerHook from "./components/hooks/useReducerHook";
 
 function App() {
   let user = "Codekul";
@@ -34,6 +35,7 @@ function App() {
         <Route path="useMemo" element={<UseMemoHook />} />
         <Route path="parrent" element={<ParrentComponent />} />
         <Route path="useCallback" element={<UseCallBackHook />} />
+        <Route path="useReducerHook" element={<UseReducerHook />} />
         <Route path="product" element={<Product />}>
           <Route path="details" element={<Details />} />
         </Route>
