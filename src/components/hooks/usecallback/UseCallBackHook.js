@@ -7,13 +7,13 @@ function UseCallBackHook() {
   const [age, setAge] = useState(25);
   const [salary, setSalary] = useState(5000);
 
-  const incrementAge = useCallback(() => {
+  const incrementAge =useCallback(() => {
     setAge(age + 1);
-  }, [age]);
+  },[age])
 
   const incrementSalary = useCallback(() => {
     setSalary(salary + 1000);
-  }, [salary]);
+  },[salary]);
 
   return (
     <div className="text-center my-10">

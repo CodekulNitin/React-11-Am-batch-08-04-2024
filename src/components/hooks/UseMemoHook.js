@@ -5,14 +5,14 @@ function UseMemoHook() {
   const [counterTwo, setCounterTwo] = useState(0);
   const [time, setTime] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(time + 1);
-    }, 1000);
-    return () => {
-      clearInterval(interval);
-    };
-  }, [time]);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setTime(time + 1);
+  //   }, 1000);
+  //   return () => {
+  //     clearInterval(interval);
+  //   };
+  // }, [time]);
 
   // const isEven =()=>{
   //   let i = 0;
@@ -28,7 +28,7 @@ function UseMemoHook() {
 
   return (
     <div className="text-center py-20">
-      {time}
+      {/* {time} */}
       <h1> {counterOne}</h1>
       {isEven ? "Even" : "Odd"}
       <h1> {counterTwo}</h1>
