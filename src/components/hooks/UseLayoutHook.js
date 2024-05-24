@@ -22,8 +22,10 @@ function UseLayoutHook() {
   useLayoutEffect(() => {
     console.log("useLayoutEffect");
   });
+
   return (
     <div className="grid grid-cols-4 gap-3 my-5 mx-5">
+      UseLayout
       {userPosts?.length > 0 &&
         userPosts.map((list) => {
           return (

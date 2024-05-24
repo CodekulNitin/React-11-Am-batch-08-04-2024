@@ -16,12 +16,13 @@ import UseMemoHook from "./components/hooks/UseMemoHook";
 import UseCallBackHook from "./components/hooks/usecallback/UseCallBackHook";
 import UseReducerHook from "./components/hooks/useReducerHook";
 import UseLayoutHook from "./components/hooks/UseLayoutHook";
+import MedicationPrint from "./components/task/medicationprint/MedicationPrint";
 
 function App() {
   let user = "Codekul";
-
+console.log(typeof null);
   return (
-    <div className="overflow-hidden">
+    <div className="">
       {/* <Navbar />
       <HomePage/> */}
       {/* <UseStateForm /> */}
@@ -38,6 +39,7 @@ function App() {
         <Route path="useCallback" element={<UseCallBackHook />} />
         <Route path="useReducerHook" element={<UseReducerHook />} />
         <Route path="useLayoutHook" element={<UseLayoutHook />} />
+        <Route path="medicationPrint" element={<MedicationPrint />} />
         <Route path="product" element={<Product />}>
           <Route path="details" element={<Details />} />
         </Route>
